@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     QString path_img = ":/images/images/i-love-qt.png";
     SetPixmap(ui->lbl_pixmap, path_img);
+
+    UpdateSizeLabel();
 }
 
 MainWindow::~MainWindow()
@@ -23,4 +25,15 @@ void MainWindow::SetPixmap(QLabel *label_pix, const QString& path) {
     QSize label_size = label_pix->size();
     pix = pix.scaled(label_size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     label_pix->setPixmap(pix);
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event) {
+    UpdateSizeLabel();
+}
+
+void MainWindow::UpdateSizeLabel() {
+    auto text = std::to_string(width()) + "x" + std::to_string(height());
+    ui->lbl_size->setText(QString::fromStdString(text));
+
+
 }

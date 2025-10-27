@@ -20,6 +20,9 @@ public:
 
     void SetPixmap(QLabel *label_pix, const QString& path);
 
+    void resizeEvent(QResizeEvent* event) override;
+    void UpdateSizeLabel();
+
 private:
     Ui::MainWindow *ui;
 };
